@@ -39,6 +39,7 @@
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^18.0.0",
     "@angular-devkit/build-angular": "^18.1.2",
     "@angular/cli": "^18.1.2",
     "@angular/compiler-cli": "^18.1.0",
@@ -47,8 +48,10 @@
     "@ngrx/eslint-plugin": "^18.0.1",
     "@ngrx/schematics": "^18.0.1",
     "@types/jasmine": "~5.1.0",
+    "@types/node": "^22.0.0",
     "angular-eslint": "18.1.0",
     "autoprefixer": "^10.4.19",
+    "dotenv-webpack": "^8.1.0",
     "eslint": "^9.6.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
