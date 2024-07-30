@@ -30,9 +30,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Angular 18 Starter',
-    );
+    expect(compiled.querySelector('h1')?.textContent).toContain('Angular 18 Starter');
   });
 
   it('should render text', () => {
