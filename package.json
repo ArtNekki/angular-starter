@@ -1,6 +1,21 @@
 {
   "name": "angular-starter",
   "version": "1.0.0",
+  "description": "Starter template for Angular project with NgRx and Tailwind CSS",
+  "author": "Anton Mayatskiy <work.mayatskiy@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArtNekki/angular-starter.git"
+  },
+  "keywords": ["angular", "starter", "ngrx", "tailwind"],
+  "homepage": "https://angular-starter.ru",
+  "bugs": {
+    "url": "https://github.com/ArtNekki/angular-starter.git/issues"
+  },
+  "engines": {
+    "node": ">=20.15.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
