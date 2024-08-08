@@ -44,3 +44,4 @@ Thumbs.db
 
 .astro
 deploy.log
+.secrets
