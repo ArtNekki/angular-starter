@@ -6,3 +6,6 @@ copy-id:
 
 serve:
 	doppler run --config dev -- ng serve
+
+rm-images:
+	docker image prune -af
