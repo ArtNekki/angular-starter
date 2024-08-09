@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Logger function
-source ./logger.sh
+source "./logger.sh"
 
 # Flag to track cleanup status
 CLEANUP_IN_PROGRESS=false
@@ -20,7 +20,7 @@ cleanup() {
   trap '' SIGINT SIGTERM
 
   log "WARNING" "Stopping container $CONTAINER_NAME"
-  docker container stop "$CONTAINER_NAME" || log WARN "Failed to stop container $CONTAINER_NAME"
+  docker container stop "$CONTAINER_NAME" || log "WARN" "Failed to stop container $CONTAINER_NAME"
   log "SUCCESS" "Container stopped"
 }
 
@@ -32,27 +32,27 @@ main() {
   log "INFO" "Script started"
 
   # Initialize variables with default values
-  NODE_ENV=development
-  DOCKERFILE=Dockerfile.dev
-  PORT=4200:4200
-  CONFIG_NAME=dev
+  NODE_ENV="development"
+  DOCKERFILE="Dockerfile.dev"
+  PORT="4200:4200"
+  CONFIG_NAME="dev"
 
   # Check if env parameter is provided
   case "${1:-}" in
   stage)
-    NODE_ENV=staging
-    DOCKERFILE=Dockerfile
-    PORT=4200:80
-    CONFIG_NAME=stage_docker
+    NODE_ENV="staging"
+    DOCKERFILE="Dockerfile"
+    PORT="4200:80"
+    CONFIG_NAME="stage_docker"
     ;;
   prod)
-    NODE_ENV=production
-    DOCKERFILE=Dockerfile
-    PORT=4200:80
-    CONFIG_NAME=prod_docker
+    NODE_ENV="production"
+    DOCKERFILE="Dockerfile"
+    PORT="4200:80"
+    CONFIG_NAME="prod_docker"
     ;;
   *)
-    NODE_ENV=development
+    NODE_ENV="development"
     ;;
   esac
 
@@ -67,7 +67,7 @@ main() {
   fi
 
   # Build Docker image
-  CONTAINER_NAME=$(doppler secrets get DOPPLER_PROJECT --plain --config "$1")-$NODE_ENV
+  CONTAINER_NAME="$(doppler secrets get DOPPLER_PROJECT --plain --config "$1")-$NODE_ENV"
   IMAGE_NAME="$(doppler secrets get DOCKER_USERNAME --plain --config "$1")/$CONTAINER_NAME:latest"
 
   if docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then
@@ -78,7 +78,7 @@ main() {
       --build-arg DOPPLER_CONFIG="$DOPPLER_CONFIG" \
       --build-arg STRAPI_URL="$STRAPI_URL" \
       --build-arg NODE_ENV="$NODE_ENV" \
-      -f $DOCKERFILE .; then
+      -f "$DOCKERFILE" .; then
       log "ERROR" "Docker build failed"
       exit 1
     fi
@@ -86,7 +86,7 @@ main() {
 
   # Run Docker container in background
   log "INFO" "Running Docker container in background"
-  if ! docker run -d -p $PORT \
+  if ! docker run -d -p "$PORT" \
     -e DOPPLER_CONFIG="$DOPPLER_CONFIG" \
     -e STRAPI_URL="$STRAPI_URL" \
     -e NODE_ENV="$NODE_ENV" \
@@ -97,7 +97,7 @@ main() {
   fi
 
   # Extract the host port from the PORT variable
-  HOST_PORT=$(echo $PORT | cut -d':' -f1)
+  HOST_PORT=$(echo "$PORT" | cut -d':' -f1)
 
   log "SUCCESS" "Container $CONTAINER_NAME is now running at http://localhost:$HOST_PORT"
   log "INFO" "Press Ctrl+C to stop the container and exit"

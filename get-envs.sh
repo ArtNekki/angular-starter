@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Logger function
-source ./logger.sh
+source "./logger.sh"
 
 # Check if config is provided
 if [ $# -eq 0 ]; then
@@ -13,9 +13,9 @@ fi
 CONFIG="$1"
 
 # Get the STRAPI_URL value from Doppler
-STRAPI_URL=$(doppler secrets get STRAPI_URL --plain --config "$CONFIG")
-echo 'STRAPI_URL:' $STRAPI_URL
+STRAPI_URL="$(doppler secrets get STRAPI_URL --plain --config "$CONFIG")"
+echo "STRAPI_URL: $STRAPI_URL"
 
 # Get the DOPPLER_CONFIG value from Doppler
-DOPPLER_CONFIG=$(doppler secrets get DOPPLER_CONFIG --plain --config "$CONFIG")
-echo 'DOPPLER_CONFIG:' $DOPPLER_CONFIG
+DOPPLER_CONFIG="$(doppler secrets get DOPPLER_CONFIG --plain --config "$CONFIG")"
+echo "DOPPLER_CONFIG: $DOPPLER_CONFIG"
