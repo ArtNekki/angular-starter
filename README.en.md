@@ -207,6 +207,8 @@ The project can be run both locally and through Docker. Deployment is implemente
 ### Testing the project
 - Run tests `npm run test`
 - Run lint `npm run lint`
+- Workflow tests:
+  - ./act.sh `workflow_name` `config_name`
 
 ### Adding a domain
 - Go to the root of the remote server project
